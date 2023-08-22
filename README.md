@@ -1,2 +1,1 @@
 # TradingProject-Golang
-# TradingProject-Golang

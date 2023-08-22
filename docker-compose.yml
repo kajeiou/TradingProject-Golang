@@ -1,0 +1,28 @@
+version: '3'
+services:
+  go-app:
+    build:
+      context: ./go-app
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"  
+    depends_on:
+      - psql
+    restart: on-failure
+
+  psql:
+    build:
+      context: ./psql
+      dockerfile: Dockerfile
+    environment:
+      POSTGRES_DB: trading
+      POSTGRES_USER: nabil
+      POSTGRES_PASSWORD: 2000
+    ports:
+      - "5432:5432"  
+    volumes:
+      - pgdata:/var/lib/postgresql/data  
+    restart: on-failure
+
+volumes:
+  pgdata: 
