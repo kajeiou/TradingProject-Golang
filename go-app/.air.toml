@@ -1,10 +1,5 @@
-# air.toml
-
-# Répertoire racine de votre projet Go
 root = "."
 
-# Fichiers à surveiller pour les modifications
 include = ["*.go"]
 
-# Commande de démarrage de votre application Go
 command = "go run main.go"

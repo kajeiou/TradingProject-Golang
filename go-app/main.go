@@ -20,14 +20,18 @@ func main() {
 	userRepo := repos.NewUserRepository(config.DbConn)
 	userService := services.NewUserService(userRepo)
 
+	// API status
 	healthHandler := handlers.NewHealthHandler()
 	server.GET("/live", healthHandler.IsAlive)
 
-	// REMOVE THAT ENDPOINT
+	// User handler
 	userHandler := handlers.NewUserHandler(userService)
-	server.GET("/users/:id", userHandler.Get)
 
-	// TODO: Register a new endpoint for POST user
+	// Register POST /users endpoint
+	server.POST("/users", userHandler.Post)
+
+	// Login POST /users endpoint
+	server.POST("/login", userHandler.Login)
 
 	if err := server.Start(":1323"); err != nil {
 		fmt.Println(err)

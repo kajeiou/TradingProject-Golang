@@ -1,15 +1,14 @@
 version: '3'
 services:
-  # go-app:
-  #  container_name: "app"
-  #  build:
-  #    context: ./go-app
-  #    dockerfile: Dockerfile
-  #  ports:
-  #    - "1323:1323"  
-  #  depends_on:
-  #    - psql
-
+  go-app:
+    container_name: "app"
+    build:
+      context: ./go-app
+      dockerfile: Dockerfile
+    ports:
+      - "1323:1323"  
+    depends_on:
+      - psql
   psql:
     container_name: "psql"
     build:
