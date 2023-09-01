@@ -1,15 +1,13 @@
-FROM golang:1.17 AS build
+# Utilisez l'image recommandée par la documentation de fresh
+FROM golang:latest
 
 WORKDIR /app
 
+# Copiez les fichiers de votre application dans le conteneur
 COPY . .
 
-RUN go build -o myapp
+# Construisez votre application Go
+RUN go build -o main
 
-FROM alpine:latest
-
-WORKDIR /app
-
-COPY --from=build /app/myapp .
-
-CMD ["./myapp"]
+# Exécutez votre application avec Air pour le hot reload
+CMD ["main"]
